@@ -268,7 +268,7 @@ $(document).ready(function() {
               parser = new DOMParser();
               doc = parser.parseFromString(xmlString, "text/html");
               
-              //console.log(doc.body.children);
+              console.log(doc.body.children);
               
               for (var i = 0; i < doc.body.children.length; i++) {
               
@@ -297,7 +297,7 @@ $(document).ready(function() {
     
 
 	
-	
+	/*
 	function loadSlide(slide) {
 //		CKEDITOR.instances["editor_kama"].setData( slides[slide] );
         
@@ -312,6 +312,8 @@ $(document).ready(function() {
 		
 		
 	}
+	*/
+	
 	function saveNext() {
 		if (!edit_slide) {
 			slides.push(tinyMCE.get('question_text').getContent());
@@ -417,12 +419,13 @@ $(document).ready(function() {
 	
 	
 	$('#slideEditForm').submit(function() {
-    
-    
-    
+
         var sections = ''
+        i=0;
 	    $( "#slides_edit" ).children('div').each(function( index ) {
 	    
+	        slides[i] = $( this ).html();
+	        slides[i] = slides[i].replace(/type=\"application\/json\"/g, 'type="text/javascript"');
             console.log("here");
             console.log( index + ": " + $( this ).html() );
             var section = '<section>';
@@ -435,20 +438,17 @@ $(document).ready(function() {
 			section += '</section>';
 			//slides[i]
 			sections += section;
-        
+        i++;
         });
-        
-    
+
         var y = document.querySelector('#deckslidesta');
-		//y.id = 'mytextarea';
-		//var d = document.createElement('div');
 		var m_title = document.querySelector('#deck_title').value;
 		var m_theme = document.querySelector('#themename').value;
 		var m_trans = document.querySelector('#transition').value;
 		//d.appendChild(document.createTextNode("This is your generated code! Copy and paste it into a html page"));
 		//var sections = '';
 
-		y.value = sections;
+		y.value = JSON.stringify(slides);
 		console.log("saved sections",sections);
     
   

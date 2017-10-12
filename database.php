@@ -8,8 +8,8 @@ $DATABASE_UNINSTALL = array(
 // The SQL to create the tables if they don't exist
 $DATABASE_INSTALL = array(
 
-array( "{$CFG->dbprefix}eo_slidedecks",
-"create table {$CFG->dbprefix}eo_slidedecks (
+array( "{$CFG->dbprefix}reveal_slidedecks",
+"create table {$CFG->dbprefix}reveal_slidedecks (
     id     INTEGER NOT NULL,
     user_id     INTEGER NOT NULL,
     description        TEXT NOT NULL,
@@ -20,8 +20,8 @@ array( "{$CFG->dbprefix}eo_slidedecks",
     UNIQUE(id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8"),
 
-array( "{$CFG->dbprefix}eo_revealassigned",
-"create table {$CFG->dbprefix}eo_revealassigned (
+array( "{$CFG->dbprefix}reveal_assigned",
+"create table {$CFG->dbprefix}reveal_assigned (
     id          INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user_id     INTEGER NOT NULL,
     slidedeck_id     INTEGER NOT NULL,
