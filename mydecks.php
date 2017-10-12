@@ -38,7 +38,7 @@ include("nav.php");
 output_new_question_modal();
 */
 
-
+//needs fixed
 if (isset($_GET['action'])) {
 
    if ($_GET['action'] == 'delete') {
@@ -155,7 +155,7 @@ $id = '';
 
          
          
-                 $savequery = "INSERT INTO {$p}eo_slidedecks
+                 $savequery = "INSERT INTO {$p}reveal_slidedecks
                 (user_id, description, slides, share, options, updated_at)
                 VALUES ( :UI, :DES, :SLI, :SHA, :OPT, NOW())";
                 // $link_id = $_POST['link_id'];
@@ -178,7 +178,7 @@ $id = '';
          
          } else {
          
-                $savequery = "INSERT INTO {$p}eo_slidedecks
+                $savequery = "INSERT INTO {$p}reveal_slidedecks
                 (id, user_id, description, slides, share, options, updated_at)
                 VALUES ( :ID, :UI, :DES, :SLI, :SHA, :OPT, NOW())
                 ON DUPLICATE KEY UPDATE user_id = :UI, description = :DES, slides = :SLI, share = :SHA, options = :OPT, updated_at = NOW()";

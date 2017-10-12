@@ -37,7 +37,7 @@ if (isset($_GET['slidedeck_id'])) {
         //Must be editing slide
         $slidedeck_id =  intval($_GET['slidedeck_id']);
 	    //Retrieve a question 
-	    $row = $PDOX->rowDie("SELECT * FROM {$p}eo_slidedecks
+	    $row = $PDOX->rowDie("SELECT * FROM {$p}reveal_slidedecks
 	        WHERE id = " . $slidedeck_id
 	    );
 

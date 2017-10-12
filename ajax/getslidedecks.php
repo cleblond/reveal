@@ -29,7 +29,7 @@ $user_id = intval($request->userid);
 //echo "my only=".$myonly;
 if ($myonly == '1') {
 //$query="select question_id, question_text, tags, question_type, created_at, updated_at from {$p}eo_questions where user_id = $user_id AND category_id = $catid";
-$query = "SELECT * FROM {$p}eo_slidedecks WHERE user_id = $user_id";
+$query = "SELECT * FROM {$p}reveal_slidedecks WHERE user_id = $user_id";
 } elseif ($myonly == '0') {
 
 

@@ -34,7 +34,7 @@ if (isset($_GET['action'])) {
         //only one assignement permitted per link better check to see if one exisists
         
         //$assignedsql = "SELECT activity_id from {$p}eo_activities WHERE link_id = :LI and assigned = 1";
-        $assignedsql = "SELECT slidedeck_id from {$p}eo_revealassigned WHERE link_id = :LI and user_id = :UID";
+        $assignedsql = "SELECT slidedeck_id from {$p}reveal_assigned WHERE link_id = :LI and user_id = :UID";
 
 
         $assigned = $PDOX->allRowsDie($assignedsql,
@@ -47,7 +47,7 @@ if (isset($_GET['action'])) {
         if (!$assigned) {
 
             //$updatesql = "UPDATE {$p}eo_activities SET assigned = 1, link_id = :LI WHERE activity_id =:AID and user_id = :UI";
-            $updatesql = "INSERT INTO {$p}eo_revealassigned SET link_id = :LI, user_id = :UID, slidedeck_id = :AID";
+            $updatesql = "INSERT INTO {$p}reveal_assigned SET link_id = :LI, user_id = :UID, slidedeck_id = :AID";
                         //$updatesql = "UPDATE {$p}eo_activities SET assigned = 1, link_id = :LI WHERE activity_id =:AID and user_id = :UI";
 
             $test = $PDOX->queryDie($updatesql,
@@ -76,7 +76,7 @@ if (isset($_GET['action'])) {
 /*        $copysql = "INSERT INTO {$p}eo_activities ( activity_title, Link_id, user_id, share, max_tries, limit_secs, show_correct, builds_on_last, grading, mode, questions, complete_by_flag, complete_by, created_at, updated_at, assigned, closed ) SELECT activity_title, :LI, :UI, '0', max_tries, limit_secs, show_correct, builds_on_last, grading, mode, questions, complete_by_flag , NOW(), NOW(), NOW(), '1', closed FROM {$p}eo_activities WHERE activity_id = :AID and user_id = :UI";
 */
         //$updatesql = "UPDATE {$p}eo_activities SET assigned = 0, link_id = :LI WHERE activity_id =:AID and user_id = :UI";
-        $updatesql = "DELETE FROM {$p}eo_revealassigned WHERE slidedeck_id =:AID and link_id = :LI and user_id = :UI";
+        $updatesql = "DELETE FROM {$p}reveal_assigned WHERE slidedeck_id =:AID and link_id = :LI and user_id = :UI";
 
         $test = $PDOX->queryDie($updatesql,
         array(
@@ -95,11 +95,11 @@ if (isset($_GET['action'])) {
 } 
 
 
-$assignedrow = $PDOX->rowDie("SELECT * FROM {$p}eo_revealassigned WHERE link_id=".$LINK->id);
+$assignedrow = $PDOX->rowDie("SELECT * FROM {$p}reveal_assigned WHERE link_id=".$LINK->id);
 
 if($assignedrow) {
 $slidedeck_id = $assignedrow['slidedeck_id'];
-$row = $PDOX->rowDie("SELECT * FROM {$p}eo_slidedecks WHERE id=".$slidedeck_id);
+$row = $PDOX->rowDie("SELECT * FROM {$p}reveal_slidedecks WHERE id=".$slidedeck_id);
 
 }
 

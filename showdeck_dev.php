@@ -18,7 +18,7 @@ die;
 }
 
 
-$sql = "SELECT * FROM {$p}eo_slidedecks WHERE id = $id";
+$sql = "SELECT * FROM {$p}reveal_slidedecks WHERE id = $id";
 $sliderow = $PDOX->rowDie($sql);
 
 $deck = $sliderow['slides'];
